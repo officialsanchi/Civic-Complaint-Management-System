@@ -11,22 +11,18 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
-    public void sendPasswordResetEmail(
-            String email,
-            String token) {
+    public void sendPasswordResetEmail(String email, String token) {
 
-        String resetLink =
-                "http://localhost:3000/reset-password?token="
-                        + token;
+        if (mailSender == null) {
+            return; // prevent crash in deployment
+        }
 
-        SimpleMailMessage message =
-                new SimpleMailMessage();
+        String resetLink = "https://your-frontend.onrender.com/reset-password?token=" + token;
 
+        SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
         message.setSubject("Password Reset");
-        message.setText(
-                "Click the link below to reset your password:\n"
-                        + resetLink);
+        message.setText("Click: " + resetLink);
 
         mailSender.send(message);
     }
