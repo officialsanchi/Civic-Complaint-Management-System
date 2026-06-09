@@ -1,0 +1,16 @@
+# Secrets and Environment Variables
+.env
+.env.local
+application.properties
+application.yml
+
+# Java & Build Outputs
+**/target/
+*.class
+*.jar
+.idea/
+*.iml
+
+# Node / Frontend Outputs
+**/node_modules/
+**/dist/
